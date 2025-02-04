@@ -1,0 +1,118 @@
+<MainScreen>:
+    MDScreen:
+        canvas.before:
+            Color:
+                rgba: 0/255, 174/255, 239/255, 1  # Blue background color
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        
+        MDBoxLayout:
+            orientation: 'vertical'
+            padding: dp(20)
+            spacing: dp(20)
+
+            MDTopAppBar:
+                title: "Attendance System"
+                elevation: 0
+                md_bg_color: 0/255, 174/255, 239/255, 1
+                specific_text_color: 1, 1, 1, 1  # White text color
+                pos_hint: {'top': 1}
+                size_hint_y: None
+                height: dp(100)
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                size_hint_y: None
+                height: dp(200)
+                padding: dp(10)
+                canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1  # White background for the login card
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [dp(25)]
+
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    spacing: dp(10)
+                    padding: dp(20)
+
+                    MDLabel:
+                        text: "WELCOME"
+                        font_style: "H5"
+                        halign: 'center'
+                        theme_text_color: "Custom"
+                        text_color: 0, 0, 0, 1  # Black text
+                        size_hint_y: None
+                        height: dp(30)
+
+                    MDLabel:
+                        text: "SIGN IN"
+                        font_style: "H5"
+                        halign: 'center'
+                        theme_text_color: "Custom"
+                        text_color: 0, 0, 0, 1  # Black text
+                        size_hint_y: None
+                        height: dp(30)
+
+                    MDTextField:
+                        id: email
+                        hint_text: "Your Email Address"
+                        icon_left: "email"
+                        size_hint_y: None
+                        height: dp(48)
+
+                    MDTextField:
+                        id: password
+                        hint_text: "Password"
+                        icon_left: "lock"
+                        password: True
+                        size_hint_y: None
+                        height: dp(48)
+
+                    MDLabel:
+                        text: "Forgot Password?"
+                        halign: 'center'
+                        theme_text_color: "Custom"
+                        text_color: 0, 0.5, 1, 1  # Blue text
+                        size_hint_y: None
+                        height: dp(30)
+
+                    MDRaisedButton:
+                        text: "Sign In"
+                        size_hint_y: None
+                        height: dp(48)
+                        on_release: root.go_to_scan_screen()
+
+                    MDLabel:
+                        text: "Don't Have Account? Sign Up"
+                        halign: 'center'
+                        theme_text_color: "Custom"
+                        text_color: 0, 0.5, 1, 1  # Blue text
+                        size_hint_y: None
+                        height: dp(30)
+
+            MDBoxLayout:
+                orientation: 'horizontal'
+                spacing: dp(10)
+                size_hint_y: None
+                height: dp(50)
+
+                MDRaisedButton:
+                    text: "Register"
+                    on_press: root.manager.current = 'register'
+                    size_hint_x: 0.45
+
+                MDRaisedButton:
+                    text: "Scan QR"
+                    id: scan_qr_button
+                    on_press: root.go_to_scan_screen()
+                    size_hint_x: 0.45
+
+            MDRaisedButton:
+                text: "View Attendance"
+                on_press: root.manager.current = 'view'
+                size_hint_y: None
+                height: dp(50)
